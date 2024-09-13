@@ -13,7 +13,12 @@
 
   <h3>Tasks:</h3>
   <ul>
-    <li v-for="(task, tasks) in tasks" :key="task">{{ task }}</li>
+    <li v-for="(task, index) in tasks" :key="task">
+      <span>
+        {{ task }}
+      </span>
+      <button @click="deleteTask(index)">Delete</button>
+    </li>
   </ul>
   <a :href="link">Click for Google</a>
 
@@ -43,7 +48,11 @@ import { ref } from 'vue';
   const addTask = () => {
     if (newTask.value.trim() !== "") {
       tasks.value.push(newTask.value);
-      newTask.value = ""
+      newTask.value = "";
     }
+  };
+
+  const deleteTask = (index) => {
+    tasks.value.splice(index, 1);
   }
 </script>
